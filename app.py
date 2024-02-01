@@ -39,7 +39,7 @@ st.title("Financial Runway and Savings Calculator")
 
 start_year = st.number_input("Year Started Working", min_value=1980, max_value=2024, value=2018, step=1)
 income = st.number_input("Monthly Income", min_value=0, max_value=20000000, value=20000, step=1000)
-expenses = st.number_input("Monthly Expenses",, min_value=0, max_value=10000000, value=15000, step=500)
+expenses = st.number_input("Monthly Expenses", min_value=0, max_value=10000000, value=15000, step=500)
 salary_increment = st.slider('Salary Increment (%)', min_value=0.0, max_value=100.0, format="%.2f") / 100
 expenses_increment = st.slider('Expenses Increment (%)', min_value=0.0, max_value=100.0, format="%.2f") / 100
 return_percentage = st.slider('Return Percentage (%)', min_value=0.0, max_value=100.0, format="%.2f") / 100

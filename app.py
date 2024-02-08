@@ -36,26 +36,29 @@ def plot_donut_chart(savings_with_return, savings_without_return):
 
 # Streamlit interface
 st.title("Financial Runway and Savings Calculator")
+#apple = st.date_input('Date input')
+# Calculate the index for the default year
+#default_index = default_year - start_year
+start_year = st.selectbox('Year Started Working', range(1980, 2024), index=(2018 - 1980))
+#start_year = st.number_input("Year Started Working", min_value=1980, max_value=2024, value=2018, step=1)
+income = st.number_input("Monthly Income", min_value=5000, max_value=10000000, value=15000, step=1000)
+expenses = st.number_input("Monthly Expenses", min_value=1000, max_value=5000000, value=12000, step=1000)
+salary_increment = st.slider('Salary Increment (%)', min_value=0.0, max_value=20.0, value=7.0,format="%.1f") / 100
+expenses_increment = st.slider('Expenses Increment (%)', min_value=0.0, max_value=100.0, value=5.0,format="%.1f") / 100
+return_percentage = st.slider('Return Percentage (%)', min_value=0.0, max_value=50.0, value=0.0,format="%.1f") / 100
 
-st.date_input("Select your working year", format="DD/MM/YYYY", disabled=False, label_visibility="visible")
-start_year = st.number_input("Year Started Working", min_value=1980, max_value=2024, value=2018, step=1)
-income = st.number_input("Monthly Income", min_value=0, max_value=20000000, value=20000, step=1000)
-expenses = st.number_input("Monthly Expenses", min_value=0, max_value=10000000, value=15000, step=500)
-salary_increment = st.slider('Salary Increment (%)', min_value=0.0, max_value=100.0, format="%.2f") / 100
-expenses_increment = st.slider('Expenses Increment (%)', min_value=0.0, max_value=100.0, format="%.2f") / 100
-return_percentage = st.slider('Return Percentage (%)', min_value=0.0, max_value=100.0, format="%.2f") / 100
 
-
-if st.button("Calculate"):
-    savings_with_return, runway_with_return = calculate_financials(start_year, income, expenses, salary_increment, expenses_increment, return_percentage)
-    savings_without_return, _ = calculate_financials(start_year, income, expenses, salary_increment, expenses_increment, 0)
+#if st.button("Calculate"):
+savings_with_return, runway_with_return = calculate_financials(start_year, income, expenses, salary_increment, expenses_increment, return_percentage)
+savings_without_return, _ = calculate_financials(start_year, income, expenses, salary_increment, expenses_increment, 0)
 
     
-    st.write("Total Runway without Return: ", runway_with_return)
-    st.write("Total Savings without Return: ", savings_without_return)
+st.write("Total Runway without Return: ", int(runway_with_return))
+st.write("Total Savings without Return: ", int(savings_without_return))
 
-    st.write("Total Savings with Return: ", savings_with_return)
-    st.write("Total Runway with Return: ", runway_with_return)
+st.write("Total Runway with Return: ", runway_with_return)
+st.write("Total Savings with Return: ", savings_with_return)
+    
 
-    donut_chart = plot_donut_chart(savings_with_return, savings_without_return)
-    st.pyplot(donut_chart)
+donut_chart = plot_donut_chart(savings_with_return, savings_without_return)
+st.pyplot(donut_chart)

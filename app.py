@@ -37,6 +37,7 @@ def plot_donut_chart(savings_with_return, savings_without_return):
 # Streamlit interface
 st.title("Financial Runway and Savings Calculator")
 
+st.date_input(label, value="today", min_value=1980, max_value=2024, key=None, help=None, on_change=None, args=None, kwargs=None, *, format="YYYY", disabled=False, label_visibility="visible")
 start_year = st.number_input("Year Started Working", min_value=1980, max_value=2024, value=2018, step=1)
 income = st.number_input("Monthly Income", min_value=0, max_value=20000000, value=20000, step=1000)
 expenses = st.number_input("Monthly Expenses", min_value=0, max_value=10000000, value=15000, step=500)
